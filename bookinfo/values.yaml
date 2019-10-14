@@ -1,3 +1,4 @@
+appname: "bookinfo"
 review:
   images:
     repository: "istio/examples-bookinfo-reviews"
