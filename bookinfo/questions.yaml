@@ -1,6 +1,21 @@
 categories:
-- Blog
-- CMS
+- test
 questions:
-- variable: imageversion
-default: "v1:1.5.0"
+- variable: defaultImage
+  default: true
+  description: "Use default Docker image"
+  label: Use Default Image
+  type: boolean
+  show_subquestion_if: false
+  group: "Container Images"
+  subquestions:
+  - variable: review.images.repository
+    default: "istio/examples-bookinfo-reviews-"
+    description: "Drone Server image name"
+    type: string
+    label: Drone Server Image Name
+  - variable: review.images.tag
+    default: "v1:1.15.0"
+    description: "Drone Server image tag"
+    type: string
+    label: Drone Server Image Tag

@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: reviews
-        image: istio/examples-bookinfo-reviews-{{.Values.imageversion}}
+        image: {{.Values.review.images.repository}}-{{.Values.review.images.tag}}
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080

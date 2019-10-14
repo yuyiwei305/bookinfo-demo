@@ -1,3 +1,5 @@
-appname: 'bookinfo'
-imageversion:'v1:1.5.0'
+review:
+  images:
+    repository: "istio/examples-bookinfo-reviews"
+    tag: "v1:1.15.0"
 
