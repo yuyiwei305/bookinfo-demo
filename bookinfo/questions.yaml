@@ -3,4 +3,4 @@ categories:
 - CMS
 questions:
 - variable: imageversion
-  default: "v1:1.5.0"
+default: "v1:1.5.0"
