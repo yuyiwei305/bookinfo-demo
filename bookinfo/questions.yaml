@@ -17,7 +17,10 @@ questions:
   - variable: review.images.tag
     default: "v1:1.15.0"
     description: "Bookinfo reviews Server image tag"
-    type: string
+    type: enum
+    options:
+      - "v1:1.15.0"
+      - "v2:1.15.0"
     label: Bookinfo reviews Server image tag 
   - variable: review.images.version
     default: v1
@@ -44,7 +47,10 @@ questions:
   - variable: preview.images.tag
     default: "v2:1.15.0"
     description: "Bookinfo reviews Server image tag"
-    type: string
+    type: enum
+    options:
+      - "v1:1.15.0"
+      - "v2:1.15.0"
     label: Bookinfo reviews Server image tag
   - variable: preview.images.version
     default: v2
