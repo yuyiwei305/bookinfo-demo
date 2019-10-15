@@ -29,18 +29,13 @@ questions:
     description: "Bookinfo reviews Server weight "
     type: int
     label: Bookinfo reviews Server weight
-- variable: Grayscale release
+- variable: preview.enabled
   default: false
   description: "Grayscale release next version"
   type: boolean
   show_subquestion_if: true
   group: "New Version"
   subquestions:
-  - variable: preview.enabled
-    default: false
-    description: "Bookinfo preview enabled"
-    type: boolean
-    label: Bookinfo preview enabled
   - variable: preview.images.repository
     default: "istio/examples-bookinfo-reviews-"
     description: "Bookinfo previews Server image name"
