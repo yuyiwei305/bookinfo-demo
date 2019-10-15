@@ -11,7 +11,7 @@ review:
     weight: 50
 
 preview:
-  enabled: false
+  enabled: true
   images:
     version: "v2"
     repository: "istio/examples-bookinfo-reviews"
