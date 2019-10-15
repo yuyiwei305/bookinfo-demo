@@ -19,6 +19,12 @@ questions:
     description: "Bookinfo reviews Server image tag"
     type: string
     label: Bookinfo reviews Server image tag 
+
+  - variable: review.images.version
+    default: v1
+    description: "Bookinfo reviews version "
+    type: string
+    label: Bookinfo reviews version
   - variable: review.images.weight
     default: 50
     description: "Bookinfo reviews Server weight "
@@ -40,7 +46,12 @@ questions:
     default: "v2:1.15.0"
     description: "Bookinfo reviews Server image tag"
     type: string
-    label: Bookinfo reviews Server image tag 
+    label: Bookinfo reviews Server image tag
+  - variable: preview.images.version
+    default: v2
+    description: "Bookinfo reviews version "
+    type: string
+    label: Bookinfo reviews version
   - variable: preview.images.weight
     default: 50
     description: "Bookinfo new reviews Server weight "
