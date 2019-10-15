@@ -13,7 +13,7 @@ questions:
     default: "istio/examples-bookinfo-reviews-"
     description: "Bookinfo reviews Server image name"
     type: string
-    label: Drone Server Image Name
+    label: Bookinfo Server Image Name
   - variable: review.images.tag
     default: "v1:1.15.0"
     description: "Bookinfo reviews Server image tag"
@@ -23,4 +23,28 @@ questions:
     default: 50
     description: "Bookinfo reviews Server weight "
     type: int
-    label: Bookinfo reviews Server weight 
+    label: Bookinfo reviews Server weight
+- variable: preview.enable
+  default: false
+  description: "Grayscale release next version"
+  type: boolean
+  show_subquestion_if: true
+  group: "New Version"
+  subquestions:
+  - variable: preview.images.repository
+    default: "istio/examples-bookinfo-reviews-"
+    description: "Bookinfo previews Server image name"
+    type: string
+    label: Bookinfo Server Image Name
+  - variable: preview.images.tag
+    default: "v2:1.15.0"
+    description: "Bookinfo reviews Server image tag"
+    type: string
+    label: Bookinfo reviews Server image tag 
+  - variable: preview.images.weight
+    default: 50
+    description: "Bookinfo new reviews Server weight "
+    type: int
+    label: Bookinfo reviews Server weight
+
+

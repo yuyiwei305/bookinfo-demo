@@ -2,14 +2,16 @@ global:
   domain: "devops.visionyu.xyz"
   appname: "bookinfo"
   gatewayname: "buapp-gateway"
+
 review:
   images:
     version: "v1"
     repository: "istio/examples-bookinfo-reviews"
     tag: "v1:1.15.0"
     weight: 50
+
 preview:
-  enable: False
+  enabled: false
   images:
     version: "v1"
     repository: "istio/examples-bookinfo-reviews"
