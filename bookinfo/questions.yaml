@@ -19,7 +19,6 @@ questions:
     description: "Bookinfo reviews Server image tag"
     type: string
     label: Bookinfo reviews Server image tag 
-
   - variable: review.images.version
     default: v1
     description: "Bookinfo reviews version "
@@ -30,13 +29,18 @@ questions:
     description: "Bookinfo reviews Server weight "
     type: int
     label: Bookinfo reviews Server weight
-- variable: preview.enable
+- variable: Grayscale release
   default: false
   description: "Grayscale release next version"
   type: boolean
   show_subquestion_if: true
   group: "New Version"
   subquestions:
+  - variable: preview.enabled
+    default: false
+    description: "Bookinfo preview enabled"
+    type: boolean
+    label: Bookinfo preview enabled
   - variable: preview.images.repository
     default: "istio/examples-bookinfo-reviews-"
     description: "Bookinfo previews Server image name"
