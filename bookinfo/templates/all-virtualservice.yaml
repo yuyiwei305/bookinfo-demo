@@ -26,12 +26,12 @@ spec:
         host: reviews
         subset: {{.Values.review.images.version}}
       weight: {{.Values.review.images.weight}}
-    {{- if .Values.preview.enabled -}}     
+    {{- if .Values.preview.enabled }}     
     - destination:
         host: reviews
         subset: {{.Values.preview.images.version}}
       weight: {{.Values.review.images.weight}} 
-    {{- end -}}
+    {{- end }}
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService

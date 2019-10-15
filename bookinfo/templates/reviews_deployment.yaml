@@ -17,7 +17,7 @@ spec:
         ports:
         - containerPort: 9080
 ---
-{{- if .Values.preview.enabled -}}
+{{ if .Values.preview.enabled -}}
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -36,4 +36,4 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
-{{- end -}}
+{{- end }}

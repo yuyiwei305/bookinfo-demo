@@ -18,12 +18,12 @@ spec:
   subsets:
   - name: {{.Values.review.images.version}}
     labels:
-      version: {{.Values.review.images.version}}
-  {{- if .Values.preview.enabled -}}      
+      version: {{.Values.review.images.version}}      
+  {{- if .Values.preview.enabled }}      
   - name: {{.Values.preview.images.version}}
     labels:
       version: {{.Values.preview.images.version}}
-  {{- end -}}    
+  {{- end }}    
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
