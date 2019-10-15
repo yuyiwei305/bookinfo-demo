@@ -1,14 +1,14 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: reviews-v1
+  name: reviews-{{.Values.review.images.version}}
 spec:
   replicas: 1
   template:
     metadata:
       labels:
         app: reviews
-        version: v1
+        version: {{.Values.review.images.version}}
     spec:
       containers:
       - name: reviews
@@ -16,3 +16,25 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
+---
+{{- if .Values.pereview.enable  }}
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: reviews-{{.Values.preview.images.version}}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: reviews
+        version: {{.Values.preview.images.version}}
+    spec:
+      containers:
+      - name: reviews
+        image: {{.Values.preview.images.repository}}-{{.Values.preview.images.tag}}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9080
+---
+{{-end}}

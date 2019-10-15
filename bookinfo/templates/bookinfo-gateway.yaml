@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: {{.Values.appname}}-gateway
+  name: {{.Values.global.gatewayname}}
 spec:
   selector:
     istio: alb-ingressgateway  # use istio default controller

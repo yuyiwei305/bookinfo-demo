@@ -11,11 +11,16 @@ questions:
   subquestions:
   - variable: review.images.repository
     default: "istio/examples-bookinfo-reviews-"
-    description: "Drone Server image name"
+    description: "Bookinfo reviews Server image name"
     type: string
     label: Drone Server Image Name
   - variable: review.images.tag
     default: "v1:1.15.0"
-    description: "Drone Server image tag"
+    description: "Bookinfo reviews Server image tag"
     type: string
-    label: Drone Server Image Tag
+    label: Bookinfo reviews Server image tag 
+  - variable: review.images.weight
+    default: 50
+    description: "Bookinfo reviews Server weight "
+    type: int
+    label: Bookinfo reviews Server weight 
