@@ -10,7 +10,7 @@ questions:
   group: "Container Images"
   subquestions:
   - variable: review.images.repository
-    default: "istio/examples-bookinfo-reviews-"
+    default: "istio/examples-bookinfo-reviews"
     description: "Bookinfo reviews Server image name"
     type: string
     label: Bookinfo Server Image Name
@@ -37,7 +37,7 @@ questions:
   group: "New Version"
   subquestions:
   - variable: preview.images.repository
-    default: "istio/examples-bookinfo-reviews-"
+    default: "istio/examples-bookinfo-reviews"
     description: "Bookinfo previews Server image name"
     type: string
     label: Bookinfo Server Image Name

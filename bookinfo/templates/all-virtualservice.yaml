@@ -3,10 +3,10 @@ kind: VirtualService
 metadata:
   name: productpage
 spec:
-  gateways:
-  - {{.Values.global.gatewayname}}
   hosts:
   - "{{.Values.global.appname}}.{{.Values.global.domain}}"
+  gateways:
+  - {{.Values.global.gatewayname}}
   http:
   - route:
     - destination:
