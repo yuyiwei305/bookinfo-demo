@@ -4,7 +4,7 @@ metadata:
   name: productpage
 spec:
   hosts:
-  - productpage
+  - "{{.Values.global.appname}}.{{.Values.global.domain}}"
   http:
   - route:
     - destination:
@@ -29,7 +29,7 @@ spec:
         host: reviews
         subset: {{.Values.preview.images.version}}
       weight: {{.Values.review.images.weight}} 
-    {{- end -}} 
+    {{- end -}}
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
