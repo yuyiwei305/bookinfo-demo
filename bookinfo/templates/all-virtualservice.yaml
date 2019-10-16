@@ -30,7 +30,7 @@ spec:
     - destination:
         host: reviews
         subset: {{.Values.preview.images.version}}
-      weight: {{.Values.review.images.weight}} 
+      weight: {{.Values.preview.images.weight}} 
     {{- end }}
 ---
 apiVersion: networking.istio.io/v1alpha3
