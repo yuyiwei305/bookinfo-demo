@@ -1,0 +1,14 @@
+---
+# Source: internal-fund-counter-service/templates/gateways.yaml
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: internal-fund-counter-gateway
+spec:
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - internal-fund-counter.api.pionex.local

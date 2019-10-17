@@ -1,1 +1,1 @@
-fund counter works!
+internal counter service  works!
