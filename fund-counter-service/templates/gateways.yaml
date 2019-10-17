@@ -1,0 +1,18 @@
+---
+# Source: fund-counter-service/templates/gateways.yaml
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: fund-counter-gateway
+spec:
+  selector:
+    istio: alb-ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - www.pionex.co
+    - www.pionex.com
+    - fund.api.pionex.com

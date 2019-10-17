@@ -1,0 +1,22 @@
+---
+# Source: fund-counter-service/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: fund-counter
+  labels:
+    app.kubernetes.io/name: fund-counter
+    # helm.sh/chart: fund-counter-service-0.1.0
+    # app.kubernetes.io/instance: fund-counter.2019.09.17.1
+    # app.kubernetes.io/version: "1.0"
+    # app.kubernetes.io/managed-by: Tiller
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: fund-counter
+    # app.kubernetes.io/instance: fund-counter.2019.09.17.1
