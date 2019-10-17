@@ -1,0 +1,58 @@
+categories:
+- BUInternelCounter
+questions:
+- variable: defaultImage
+  default: true
+  description: "Use default Docker image tag"
+  label: Use Default Image tag
+  type: boolean
+  show_subquestion_if: false
+  group: "Container Images"
+  subquestions:
+  - variable: default.images.tag
+    default: "2019.09.24.1"
+    description: "internal_counter_service"
+    type: enum
+    options:
+      - "2019.09.24.1"
+      - "2019.09.24.2"
+      - "2019.09.24.3"
+    label: BU internel counter Server image Tag
+  - variable: default.subnet
+    default: v1
+    description: "BU internel counter subnet "
+    type: string
+    label: BU internel counter subnet
+  - variable: default.weight
+    default: 50
+    description: "BU internel counter Server weight "
+    type: int
+    label: BU internel counter Server weight
+- variable: newversion.enabled
+  default: false
+  description: "Grayscale release next version"
+  type: boolean
+  show_subquestion_if: true
+  group: "New Version"
+  subquestions:
+  - variable: newversion.images.tag
+    default: "2019.09.24.2"
+    description: "BU internel counter Server image Tag"
+    type: enum
+    options:
+      - "2019.09.24.1"
+      - "2019.09.24.2"
+      - "2019.09.24.3"
+    label: BU internel counter Server image Tag
+  - variable: newversion.subnet
+    default: v2
+    description: "BU internel counter subnet "
+    type: string
+    label: BU internel counter subnet
+  - variable: newversion.weight
+    default: 50
+    description: "BU internel counter Server weight "
+    type: int
+    label: BU internel counter Server weight
+
+

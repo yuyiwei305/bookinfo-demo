@@ -1,13 +1,11 @@
----
-# Source: fund-counter-service/templates/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fund-counter-{{.Values.default.subnet}}
+  name: internal-counter-{{.Values.default.subnet}}
   labels:
     app.kubernetes.io/name: {{.Values.default.images.name}}
-    # helm.sh/chart: fund-counter-service-0.1.0
-    # app.kubernetes.io/instance: fund-counter.2019.09.17.1
+    # helm.sh/chart: internal-counter-service-0.1.0
+    # app.kubernetes.io/instance: internal-counter.2019.09.24.1
     # app.kubernetes.io/version: "1.0"
     # app.kubernetes.io/managed-by: Tiller
 spec:
@@ -15,12 +13,12 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: {{.Values.default.images.name}}
-      # app.kubernetes.io/instance: fund-counter.2019.09.17.1
+      # app.kubernetes.io/instance: internal-counter.2019.09.24.1
   template:
     metadata:
       labels:
         app.kubernetes.io/name: {{.Values.default.images.name}}
-        # app.kubernetes.io/instance: fund-counter.2019.09.17.1
+        # app.kubernetes.io/instance: internal-counter.2019.09.24.1
     spec:
       containers:
         - name: nginx-proxy
@@ -43,13 +41,13 @@ spec:
             {}
             
         - name: {{.Values.default.images.name}}
-          image: "651538853910.dkr.ecr.us-west-2.amazonaws.com/fund_counter_service:{{.Values.default.images.tag}}"
+          image: "651538853910.dkr.ecr.us-west-2.amazonaws.com/internal_counter_service:{{.Values.default.images.tag}}"
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:
-                name: fund-counter-django-configmap
+                name: internal-counter-django-configmap
             - secretRef:
-                name: fund-counter-secret
+                name: internal-counter-secret
           volumeMounts:
             - name: shared-uwsgi-socket
               mountPath: /var/run
@@ -59,7 +57,7 @@ spec:
                 - uwsgi_curl
                 - -H
                 - Host:host.name
-                - /var/run/fund-counter.sock
+                - /var/run/internal-counter.sock
                 - /health_check
             initialDelaySeconds: 20
             periodSeconds: 20
@@ -69,7 +67,7 @@ spec:
                 - uwsgi_curl
                 - -H
                 - Host:host.name
-                - /var/run/fund-counter.sock
+                - /var/run/internal-counter.sock
                 - /health_check
           resources:
             {}
@@ -77,13 +75,13 @@ spec:
       volumes:
         - name: nginx-config
           configMap:
-            name: fund-counter-nginx-configmap
+            name: internal-counter-nginx-configmap
             items:
             - key: nginx.conf
               path: nginx.conf
         - name: default-config
           configMap:
-            name: fund-counter-nginx-configmap
+            name: internal-counter-nginx-configmap
             items:
             - key: default.conf
               path: default.conf
@@ -94,11 +92,11 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fund-counter-{{.Values.newversion.subnet}}
+  name: internal-counter-{{.Values.newversion.subnet}}
   labels:
     app.kubernetes.io/name: {{.Values.newversion.images.name}}
-    # helm.sh/chart: fund-counter-service-0.1.0
-    # app.kubernetes.io/instance: fund-counter.2019.09.17.1
+    # helm.sh/chart: internal-counter-service-0.1.0
+    # app.kubernetes.io/instance: internal-counter.2019.09.24.1
     # app.kubernetes.io/version: "1.0"
     # app.kubernetes.io/managed-by: Tiller
 spec:
@@ -106,12 +104,12 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: {{.Values.newversion.images.name}}
-      # app.kubernetes.io/instance: fund-counter.2019.09.17.1
+      # app.kubernetes.io/instance: internal-counter.2019.09.24.1
   template:
     metadata:
       labels:
         app.kubernetes.io/name: {{.Values.newversion.images.name}}
-        # app.kubernetes.io/instance: fund-counter.2019.09.17.1
+        # app.kubernetes.io/instance: internal-counter.2019.09.24.1
     spec:
       containers:
         - name: nginx-proxy
@@ -134,13 +132,13 @@ spec:
             {}
             
         - name: {{.Values.newversion.images.name}}
-          image: "651538853910.dkr.ecr.us-west-2.amazonaws.com/fund_counter_service:{{.Values.newversion.images.tag}}"
+          image: "651538853910.dkr.ecr.us-west-2.amazonaws.com/internal_counter_service:{{.Values.newversion.images.tag}}"
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:
-                name: fund-counter-django-configmap
+                name: internal-counter-django-configmap
             - secretRef:
-                name: fund-counter-secret
+                name: internal-counter-secret
           volumeMounts:
             - name: shared-uwsgi-socket
               mountPath: /var/run
@@ -150,7 +148,7 @@ spec:
                 - uwsgi_curl
                 - -H
                 - Host:host.name
-                - /var/run/fund-counter.sock
+                - /var/run/internal-counter.sock
                 - /health_check
             initialDelaySeconds: 20
             periodSeconds: 20
@@ -160,7 +158,7 @@ spec:
                 - uwsgi_curl
                 - -H
                 - Host:host.name
-                - /var/run/fund-counter.sock
+                - /var/run/internal-counter.sock
                 - /health_check
           resources:
             {}
@@ -168,13 +166,13 @@ spec:
       volumes:
         - name: nginx-config
           configMap:
-            name: fund-counter-nginx-configmap
+            name: internal-counter-nginx-configmap
             items:
             - key: nginx.conf
               path: nginx.conf
         - name: default-config
           configMap:
-            name: fund-counter-nginx-configmap
+            name: internal-counter-nginx-configmap
             items:
             - key: default.conf
               path: default.conf
