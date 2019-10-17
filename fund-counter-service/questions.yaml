@@ -11,7 +11,7 @@ questions:
   subquestions:
   - variable: default.images.tag
     default: "2019.10.14.1"
-    description: "BU fund counter Server image Tag"
+    description: "image: <651538853910.dkr.ecr.us-west-2.amazonaws.com/fund_counter_service> "
     type: enum
     options:
       - "2019.10.14.1"
