@@ -1,15 +1,15 @@
 debug: 'FALSE'
 
-servicename1: "bot.bituniberse.org"
-# servicename2: "www.pionex.co"
-gatewayname: "bot-bituniverse"
+servicename1: "www.pionex.com"
+servicename2: "www.pionex.co"
+gatewayname: "pionex-web"
 
 default:
   # host: fund-counter.cluster-cmr8sblnu0ix.us-west-2.rds.amazonaws.com
   images:
     repository: "651538853910.dkr.ecr.us-west-2.amazonaws.com"
-    name: "bot_bituniverse_web"
-    tag: "v2019.09.05.7"
+    name: "pionex-web"
+    tag: "v2019.10.19.5"
   subnet: "v1"
   weight: 50
 
@@ -17,7 +17,7 @@ newversion:
   enabled: false
   images:
     repository: "651538853910.dkr.ecr.us-west-2.amazonaws.com"
-    name: "bot_bituniverse_web"
-    tag: "v2019.09.05.7"
+    name: "pionex-web"
+    tag: "v2019.10.19.5"
   subnet: "v2"
   weight: 50
