@@ -1,0 +1,55 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{.Values.default.images.name}}-{{.Values.default.subnet}}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{.Values.default.images.name}}
+        version: {{.Values.default.subnet}}
+    spec:
+      containers:
+      - name: {{.Values.default.images.name}}
+        image: {{.Values.default.images.repository}}/{{.Values.default.images.name}}:{{.Values.default.images.tag}}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+---
+{{ if .Values.newversion.enabled -}}
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{.Values.newversion.images.name}}-{{.Values.newversion.subnet}}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{.Values.newversion.images.name}}
+        version: {{.Values.newversion.subnet}}
+    spec:
+      containers:
+      - name: {{.Values.newversion.images.name}}
+        image: {{.Values.newversion.images.repository}}/{{.Values.newversion.images.name}}:{{.Values.newversion.images.tag}}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+{{- end }}
+
+---
+# Reviews service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.Values.default.images.name}}
+  labels:
+    app: {{.Values.default.images.name}}
+spec:
+  ports:
+  - port: 80
+    name: http
+  selector:
+    app: {{.Values.default.images.name}}

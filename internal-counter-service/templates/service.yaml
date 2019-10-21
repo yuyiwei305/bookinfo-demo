@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: internal-counter
+  labels:
+    app.kubernetes.io/name: internal-counter
+    # helm.sh/chart: internal-counter-service-0.1.0
+    # app.kubernetes.io/instance: internal-counter.2019.09.24.1
+    # app.kubernetes.io/version: "1.0"
+    # app.kubernetes.io/managed-by: Tiller
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: internal-counter
+    # app.kubernetes.io/instance: internal-counter.2019.09.24.1

@@ -1,0 +1,90 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: internal-counter-django-configmap
+data:
+  DEFAULT_DATABASE: internal_counter
+  DEFAULT_DATABASE_HOST: fund-counter.cluster-cmr8sblnu0ix.us-west-2.rds.amazonaws.com
+  SLAVE_DATABASE: internal_counter
+  SLAVE_DATABASE_HOST: fund-counter.cluster-ro-cmr8sblnu0ix.us-west-2.rds.amazonaws.com
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: internal-counter-nginx-configmap
+data:
+  nginx.conf: |-
+    user nginx;
+    worker_processes auto;
+    error_log  /var/log/nginx/error.log warn;
+    pid        /var/run/nginx.pid;
+
+    worker_rlimit_nofile 16384;
+
+    events {
+      worker_connections 8192;
+    }
+
+    http {
+      log_format main
+           '$remote_addr $host $remote_user [$time_local] "$request" $status $bytes_sent "$http_referer" "$http_user_agent" $request_time $upstream_response_time $upstream_addr';
+
+      client_header_timeout  300s; # If after this time the client send nothing, nginx returns error "Request time out" (408).
+      client_body_timeout    300s;
+      send_timeout           300s; # if after this time client will take nothing, then nginx is shutting down the connection.
+      connection_pool_size        256;
+      client_header_buffer_size    1k;
+      large_client_header_buffers    4 2k;
+      request_pool_size        4k;
+      output_buffers   4 32k;
+      postpone_output  1460;
+      sendfile        on;
+      tcp_nopush             on;
+      keepalive_timeout      60 30;
+      tcp_nodelay            on;
+      real_ip_header X-Forwarded-For;
+      set_real_ip_from 0.0.0.0/0;
+
+      client_max_body_size       10m;
+      client_body_buffer_size    256k;
+
+      gzip on;
+      gzip_min_length  1100;
+      gzip_comp_level  4;
+      gzip_buffers     4 32k;
+      gzip_types       application/json text/plain application/x-javascript text/xml text/css;
+
+      ignore_invalid_headers    on;
+
+
+      access_log  /var/log/nginx/access.log  main;
+
+      include /etc/nginx/conf.d/*.conf;
+      include /etc/nginx/sites-enabled/*;
+    }
+
+  default.conf: |-
+    # the upstream component nginx needs to connect to
+    upstream django {
+      server unix:///var/run/internal-counter.sock;
+    }
+
+    # configuration of the server
+    server {
+      # the port your site will be served on
+      listen      80;
+      # the domain name it will serve for
+      server_name fund.api.pionex.com; # substitute your machine's IP address or FQDN
+      charset     utf-8;
+
+      # max upload size
+      client_max_body_size 20M;   # adjust to taste
+
+      # finally, send all non-media requests to the Django server.
+      location / {
+        uwsgi_pass  django;
+        include     uwsgi_params; # the uwsgi_params file you installed
+      }
+    }

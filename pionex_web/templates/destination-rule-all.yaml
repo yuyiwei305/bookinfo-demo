@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: {{.Values.default.images.name}}
+spec:
+  host: {{.Values.default.images.name}}
+  subsets:
+  - name: {{.Values.default.images.name}}
+    labels:
+      version: {{.Values.default.subset}}      
+  {{- if .Values.newversion.enabled }}      
+  - name: {{.Values.newversion.images.name}}
+    labels:
+      version: {{.Values.newversion.subset}} 
+  {{- end }}    
